@@ -38,3 +38,13 @@ class CreateWalletRequest(BaseModel):
         if v < 0:
             raise ValueError("Initial balance cannot be negative")
         return v
+    
+
+class UserRequest(BaseModel):
+    login: str = Field(..., max_length=127)
+
+
+class UserResponse(UserRequest):
+    model_config = {"from_attributes": True} # чтобы превратить модель алхимии в pydantic модель
+
+    id: int
